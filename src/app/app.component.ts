@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'bootcamp-devjr-mod3cap3-CadProdutos2';
+  
 }
