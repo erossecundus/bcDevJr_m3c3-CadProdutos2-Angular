@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Category } from '../../interfaces/Category';
+import { Product } from '../../interfaces/Product';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ export class ProductsComponent {
     {id:4, name:"Premium"}
   ]
 
+  product : Product = {} as Product;
 
 
   constructor() {}

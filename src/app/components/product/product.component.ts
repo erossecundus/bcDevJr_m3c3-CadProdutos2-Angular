@@ -9,14 +9,12 @@ import { Product } from '../../interfaces/Product';
 })
 export class ProductComponent {
   title = 'Formulário de Cadastro:';
-  product : Product = {
-    newProduct: false,
-    promotion: false
-  } as Product;
-  
 
   @Input()
   categories : Category[] = [];
+
+  @Input()
+  product ?: Product;
 
   save() {
     console.log(this.product)
