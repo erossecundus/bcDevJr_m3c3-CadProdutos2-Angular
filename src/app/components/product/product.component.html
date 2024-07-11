@@ -3,32 +3,38 @@
 
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <form id="formProduct">
+      <form  #formBook="ngForm" id="formProduct">
         <div class="row mb-3 mt-3">
           <label for="inputName" class="col-sm-2 col-form-label">Nome:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" required>
+            <input type="text" class="form-control" id="inputName" name="name"
+              [(ngModel)]="product.name" required>
           </div>
         </div>
 
         <div class="row mb-3 mt-3">
           <label for="inputDescription" class="col-sm-2 col-form-label">Descrição:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputDescription" required>
+            <input type="text" class="form-control" id="inputDescription" name="description"
+              [(ngModel)]="product.description" required>
           </div>
         </div>
 
         <div class="row mb-3 mt-3">
           <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="inputPrice" required>
+            <input type="text" class="form-control" id="inputPrice" name="price"
+              [(ngModel)]="product.price" required>
           </div>
 
           <label for="selectCategory" class="col-sm-2 col-form-label">Categoria:</label>
           <div class="col-sm-4">
-            <select class="form-select" aria-label="Selecione uma categoria" id="selectCategory" required>
+            <select class="form-select" aria-label="Selecione uma categoria" id="selectCategory" name="category"
+              [(ngModel)]="product.category" required>
               <option value="" selected>Escolha:</option>
-              <option *ngFor="let categ of categories" [ngValue]="categ.id">{{categ.name}}</option>
+              <option *ngFor="let categ of categories" [ngValue]="categ">
+                {{categ.name}}
+              </option>
             </select>
           </div>
         </div>
@@ -37,13 +43,15 @@
           <label class="col-sm-2 col-form-label">Opções:</label>
           <div class="col-sm-4">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="checkBoxPromotion">
+              <input class="form-check-input" type="checkbox" value="" id="checkBoxPromotion" name="promotion"
+                [(ngModel)]="product.promotion">
               <label class="form-check-label" for="checkBoxPromotion">
                 Promoção
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="checkBoxNewProduct">
+              <input class="form-check-input" type="checkbox" value="" id="checkBoxNewProduct" name="newProduct"
+                [(ngModel)]="product.newProduct">
               <label class="form-check-label" for="checkBoxNewProduct">
                 Lançamento
               </label>
@@ -52,7 +60,7 @@
         </div>
         <div class="row mb-3 mt-3">
           <div class="col-sm-4">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary" (click)="save()">Cadastrar</button>
           </div>
         </div>
 
