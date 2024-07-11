@@ -28,6 +28,7 @@
           <div class="col-sm-4">
             <select class="form-select" aria-label="Selecione uma categoria" id="selectCategory" required>
               <option value="" selected>Escolha:</option>
+              <option *ngFor="let categ of categories" [ngValue]="categ.id">{{categ.name}}</option>
             </select>
           </div>
         </div>
