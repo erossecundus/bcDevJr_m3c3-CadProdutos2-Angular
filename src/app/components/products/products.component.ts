@@ -19,6 +19,17 @@ export class ProductsComponent {
 
   product : Product = {} as Product;
 
+  products : Product[] = [];
+
+  saveProd() {
+    this.product.id = this.products.length+1;
+    this.products.push(this.product);
+
+    console.log(this.product);
+    this.product = {} as Product;
+
+  }
+
 
   constructor() {}
 
