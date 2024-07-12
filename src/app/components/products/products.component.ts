@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Category } from '../../interfaces/Category';
 import { Product } from '../../interfaces/Product';
+import { CategoryService } from '../../services/category.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -10,28 +12,23 @@ import { Product } from '../../interfaces/Product';
 export class ProductsComponent {
   title = 'Produtos Cadastrados:';
 
-  categories : Category[] = [
-    {id:1, name:"Produção Própria"},
-    {id:2, name:"Nacional"},
-    {id:3, name:"Importado"},
-    {id:4, name:"Premium"}
-  ]
+  categories : Category[] = [];
 
   product : Product = {} as Product;
-
   products : Product[] = [];
 
-  saveProd() {
-    this.product.id = this.products.length+1;
-    this.products.push(this.product);
+  constructor(private categoryService : CategoryService,
+              private productService : ProductService) {}
 
-    console.log(this.product);
-    this.product = {} as Product;
-
+  ngOnInit() : void {
+    this.categories = this.categoryService.getCategories();
+    this.products = this.productService.getProducts();
   }
 
-
-  constructor() {}
-
-  ngOnInit() : void {}
+  saveProduct() {
+    this.productService.save(this.product);
+    this.product = {} as Product;
+    
+    console.log("salvou?");
+  }
 }
