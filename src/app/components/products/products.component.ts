@@ -12,23 +12,38 @@ import { ProductService } from '../../services/product.service';
 export class ProductsComponent {
   title = 'Produtos Cadastrados:';
 
-  categories : Category[] = [];
+  categories: Category[] = [];
 
-  product : Product = {} as Product;
-  products : Product[] = [];
+  product: Product = {} as Product;
+  products: Product[] = [];
 
-  constructor(private categoryService : CategoryService,
-              private productService : ProductService) {}
+  constructor(private categoryService: CategoryService,
+    private productService: ProductService) { }
 
-  ngOnInit() : void {
-    this.categories = this.categoryService.getCategories();
-    this.products = this.productService.getProducts();
+  ngOnInit(): void {
+    this.loadCategories();
+    this.loadProducts();
   }
 
+  loadCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: data => { this.categories = data }
+    });
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: data => { this.products = data }
+    });
+  }
+
+
   saveProduct() {
-    this.productService.save(this.product);
-    this.product = {} as Product;
-    
-    console.log("salvou?");
+    this.productService.save(this.product).subscribe({
+      next: data => {
+        this.products.push(data);
+        this.product = {} as Product;
+      }
+    });
   }
 }
